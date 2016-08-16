@@ -1,0 +1,32 @@
+<Solution>
+  <PropertyGroup Name="FunnyJump" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="fonts">
+          <TTF Name="arial.ttf" />
+          <TTF Name="Marker Felt.ttf" />
+        </Folder>
+        <Folder Name="image">
+          <Folder Name="ui">
+            <Folder Name="common">
+              <Image Name="common_btn_anniu10.png" />
+              <Image Name="common_btn_anniu10_sel.png" />
+              <Image Name="common_btn_chongzhian.png" />
+              <Image Name="common_btn_chongzhian_sel.png" />
+              <Image Name="common_icon_sctb.png" />
+              <Image Name="common_scale9_yaan3.png" />
+              <Image Name="common_scale9_zhezhao1.png" />
+            </Folder>
+          </Folder>
+        </Folder>
+        <Image Name="boss5_mark.png" />
+        <Image Name="HelloWorld.png" />
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Image Name="monster_0012.png" />
+        <Project Name="StartScene.csd" Type="Scene" />
+        <Image Name="yellowstar.png" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
