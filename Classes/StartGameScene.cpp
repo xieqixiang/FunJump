@@ -2,6 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 
+
 USING_NS_CC;
 using namespace cocos2d::ui;
 
@@ -116,7 +117,7 @@ bool StartGameScene::init()
 		char str[11] = "btnLevel";
 		int index = i;
 		char cIndex[3];
-		itoa(index, cIndex,10);
+        sprintf(cIndex,"%d",index);
 		strcat(str, cIndex);
 
 		Button* btnlevel = dynamic_cast<Button*>(this->levelList->getChildByName(str));
