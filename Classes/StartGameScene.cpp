@@ -143,7 +143,7 @@ void StartGameScene::onClickLevel(cocos2d::Ref* pSender)
 	levelIndex = levelIndex - 100;
 	if (levelIndex <= LEVELCOUNT)
 	{
-		auto scene = PlayLevelScene::createScene();
+		auto scene = PlayLevelScene::createScene(1,levelIndex);
 		Director::getInstance()->replaceScene(scene);
 	}
 }
