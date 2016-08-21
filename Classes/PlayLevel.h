@@ -5,10 +5,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "PillarInfo.h"
-<<<<<<< HEAD
 #include "StartGameScene.h"
-=======
->>>>>>> origin/master
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -18,13 +15,7 @@ class PlayLevelScene : public cocos2d::Layer
 public:
 	PlayLevelScene();
 
-<<<<<<< HEAD
     static cocos2d::Scene* createScene(int section,int level);
-=======
-	//section : 章节
-	//level : 关卡
-	static cocos2d::Scene* createScene(int section,int level);
->>>>>>> origin/master
 
 	virtual bool init();
 
@@ -36,10 +27,6 @@ public:
 
 	void handleTouchEvent(cocos2d::Ref* ref, Widget::TouchEventType touchEventType);
 
-<<<<<<< HEAD
-=======
-	//执行跳跃动作
->>>>>>> origin/master
 	void runJump(float interval);
 
 	Vec2 * findPoint(cocos2d::Node* node, float psx, float psy);
@@ -48,7 +35,6 @@ public:
 
 
 	bool checkCollision(float nextX,float nextY);
-<<<<<<< HEAD
     
     void onClickRestart(cocos2d::Ref* sender);
 
@@ -58,10 +44,6 @@ public:
     
     float customMax(float a,float b ,float c,float d);
     float customMin(float a,float b ,float c,float d);
-=======
-
-	void resetValue();
->>>>>>> origin/master
 
 	struct MapPillar{
 		float minX;
@@ -85,23 +67,16 @@ private:
 
 	bool bCollisionPillar ;
 	bool bCollision ;
-<<<<<<< HEAD
     
     bool GAME_OVER ;
     
     int touchCount ;
-=======
->>>>>>> origin/master
 
 	float conMaxX;
 
 	Layout* pillarContainer;
 
-<<<<<<< HEAD
 	PillarInfo curCollisionPillar;
-=======
-	Layout* curCollisionPillar;
->>>>>>> origin/master
 	
 	Vec2 startPoint;
 
@@ -112,14 +87,11 @@ private:
 	Size heroSize;
 
 	std::vector<MapPillar> vMap;
-<<<<<<< HEAD
     
     Vec2 curPoint;
     
     static int curSection ;
     static int curLevel ;
-=======
->>>>>>> origin/master
 	
 };
 
