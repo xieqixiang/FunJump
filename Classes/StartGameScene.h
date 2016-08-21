@@ -18,12 +18,20 @@ public:
 
 	void onClickStartGame(cocos2d::Ref* pSender);
 	void onClickLevel(cocos2d::Ref* pSender);
+    
+    void onClickPlayAgain(cocos2d::Ref* pSender);
+    
 
     // implement the "static create()" method manually
 	CREATE_FUNC(StartGameScene);
+    
+    static bool GAME_OVER;
+    static int SECTION ;
+    static int LEVEL;
 private:
 	cocos2d::Node *levelList;
 	cocos2d::Node *conStartGame;
+    cocos2d::Node *conGame;
 
 	float frameWidth;
 	float frameHeight;

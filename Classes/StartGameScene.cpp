@@ -6,6 +6,10 @@
 USING_NS_CC;
 using namespace cocos2d::ui;
 
+bool StartGameScene::GAME_OVER = false;
+int StartGameScene::SECTION = 1;
+int StartGameScene::LEVEL = 1;
+
 //using namespace cocostudio::timeline;
 
 StartGameScene::StartGameScene() :levelList(nullptr), conStartGame(nullptr), frameWidth(0), frameHeight(0), openglScaleX(0), openglScaleY(0)
@@ -108,6 +112,26 @@ bool StartGameScene::init()
 
 	conStartGame->setScaleX(1/this->openglScaleX);
 	conStartGame->setScaleY(1/this->openglScaleY);
+    
+    auto conGameOver = mainContainer->getChildByName("conGameOver_StartScene");
+    this->conGame = conGameOver;
+    conGameOver->setScaleX(1/this->openglScaleX);
+    conGameOver->setScaleY(1/this->openglScaleY);
+    
+    Button* btnRestartGame = dynamic_cast<Button*>(conGameOver->getChildByName("btnRestartGame_StartScene"));
+    btnRestartGame->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickPlayAgain, this));
+                                                   
+                                                   
+    Button* btnSelectLevel = dynamic_cast<Button*>(conGameOver->getChildByName("btnSelectLevel_StartScene"));
+    btnSelectLevel->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickStartGame, this));
+                                                   
+                                                   
+                            
+    
+    if (GAME_OVER) {
+        conStartGame->setVisible(false);
+        conGameOver->setVisible(true);
+    }
 
 	Button* btnStartGame = dynamic_cast<Button*>(this->conStartGame->getChildByName("btnStartGame_StartScene"));
 	btnStartGame->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickStartGame, this));
@@ -134,6 +158,13 @@ void StartGameScene::onClickStartGame(cocos2d::Ref* pSender)
 	log("onClickStartGame");
 	this->levelList->setVisible(true);
 	this->conStartGame->setVisible(false);
+    this->conGame->setVisible(false);
+}
+
+void StartGameScene::onClickPlayAgain(cocos2d::Ref* pSender)
+{
+    auto scene = PlayLevelScene::createScene(StartGameScene::SECTION,StartGameScene::LEVEL);
+    Director::getInstance()->replaceScene(scene);
 }
 
 void StartGameScene::onClickLevel(cocos2d::Ref* pSender)
@@ -143,7 +174,7 @@ void StartGameScene::onClickLevel(cocos2d::Ref* pSender)
 	levelIndex = levelIndex - 100;
 	if (levelIndex <= LEVELCOUNT)
 	{
-		auto scene = PlayLevelScene::createScene();
+		auto scene = PlayLevelScene::createScene(1,levelIndex);
 		Director::getInstance()->replaceScene(scene);
 	}
 }
