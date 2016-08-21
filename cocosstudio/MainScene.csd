@@ -34,7 +34,11 @@
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="255" G="255" B="255" />
                     <EndColor A="255" R="255" G="255" B="255" />
+<<<<<<< HEAD
                     <ColorVector ScaleX="1.0000" />
+=======
+                    <ColorVector ScaleX="1.0000" ScaleY="0.0000" />
+>>>>>>> origin/master
                   </AbstractNodeData>
                   <AbstractNodeData Name="stairs2_mainScene" ActionTag="1835105187" Tag="2" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="148.2559" RightMargin="3080.8105" TopMargin="759.3549" ClipAble="False" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="139.6346" Y="80.6451" />
@@ -432,7 +436,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -847,7 +851,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -1262,7 +1266,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -1677,7 +1681,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -2092,7 +2096,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -2507,7 +2511,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -2922,7 +2926,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -3337,7 +3341,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -4167,7 +4171,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
@@ -4582,7 +4586,7 @@
                     <Position X="1508.8450" Y="0.0004" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2803" />
+                    <PrePosition X="0.2803" Y="0.0000" />
                     <PreSize X="0.0084" Y="0.6027" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="150" G="200" B="255" />
