@@ -101,22 +101,24 @@ bool StartGameScene::init()
 
     this->openglScaleX = openglView->getScaleX();
     this->openglScaleY = openglView->getScaleY();
+
+	float minscale = this->openglScaleX < this->openglScaleY ? this->openglScaleX : this->openglScaleY;
     
     auto rootNode = CSLoader::createNode("StartScene.csb");
     auto mainContainer = rootNode->getChildByName("MainContainer");
     this->levelList = mainContainer->getChildByName("conLevelList_StartScene");
-    this->levelList->setScaleX(1 / this->openglScaleX);
-    this->levelList->setScaleY(1 / this->openglScaleY);
+	this->levelList->setScaleX(minscale / this->openglScaleX);
+	this->levelList->setScaleY(minscale / this->openglScaleY);
 
     this->conStartGame = mainContainer->getChildByName("conStartGame_StartScene");
 
-    conStartGame->setScaleX(1/this->openglScaleX);
-    conStartGame->setScaleY(1/this->openglScaleY);
+	conStartGame->setScaleX(minscale / this->openglScaleX);
+	conStartGame->setScaleY(minscale / this->openglScaleY);
     
     auto conGameOver = mainContainer->getChildByName("conGameOver_StartScene");
     this->conGame = conGameOver;
-    conGameOver->setScaleX(1/this->openglScaleX);
-    conGameOver->setScaleY(1/this->openglScaleY);
+	conGameOver->setScaleX(minscale / this->openglScaleX);
+	conGameOver->setScaleY(minscale / this->openglScaleY);
     
     Button* btnRestartGame = dynamic_cast<Button*>(conGameOver->getChildByName("btnRestartGame_StartScene"));
     btnRestartGame->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickPlayAgain, this));

@@ -5,7 +5,7 @@ int PlayLevelScene::curSection = 1;
 
 int  PlayLevelScene::curLevel = 1;
 
-PlayLevelScene::PlayLevelScene() :bTouch(false), bJump(false), hero(nullptr), loadbar(nullptr), pillarContainer(nullptr)
+PlayLevelScene::PlayLevelScene() :bTouch(false),skeletonNode(nullptr), bJump(false), hero(nullptr), loadbar(nullptr), pillarContainer(nullptr)
 {
 	this->acceleration = 104;
 	this->tempAcceleration = 104;
@@ -23,6 +23,14 @@ PlayLevelScene::PlayLevelScene() :bTouch(false), bJump(false), hero(nullptr), lo
     this->touchCount = 0;
     
     
+}
+
+PlayLevelScene::~PlayLevelScene()
+{
+	if (skeletonNode != nullptr)
+	{
+		delete skeletonNode;
+	}
 }
 
 
@@ -79,12 +87,24 @@ bool PlayLevelScene::init()
 	auto scaleX = openglView->getScaleX();
 	auto scaleY = openglView->getScaleY();
 
+	float minscale = scaleX < scaleY ? scaleX : scaleY;
 	auto imgHero = static_cast<ImageView*>(levelNode->getChildByName("imgHero_mainScene"));
-	imgHero->setScaleX(1/scaleX);
-	imgHero->setScaleY(1/scaleY);
+
+	imgHero->setScaleX(minscale / scaleX);
+	imgHero->setScaleY(minscale / scaleY);
+	//imgHero->setVisible(false);
 
 	this->heroSize.width = imgHero->getContentSize().width*imgHero->getScaleX();
 	this->heroSize.height = imgHero->getContentSize().height*imgHero->getScaleY();
+
+
+	//skeletonNode = new SkeletonAnimation("armatures/pet/pet_0001.json","armatures/pet/pet_0001.atlas");
+	//skeletonNode->setAnimation(0, "standby",true);
+	//skeletonNode->setAnchorPoint(Vec2(0,0));
+	//skeletonNode->setScaleX(minscale / scaleX*0.6);
+	//skeletonNode->setScaleY(minscale / scaleY*0.6);
+
+	//levelNode->addChild(skeletonNode);
 
 	this->hero = imgHero;
 
@@ -105,8 +125,8 @@ bool PlayLevelScene::init()
 		
 		if (childNode)
 		{
-			childNode->setScaleX(1 / scaleX);
-			childNode->setScaleY(1 / scaleY);
+			childNode->setScaleX(minscale / scaleX);
+			childNode->setScaleY(minscale / scaleY);
 			vWidget.push_back(childNode);
 		}
 		else
@@ -123,6 +143,9 @@ bool PlayLevelScene::init()
 
 			this->hero->setPositionX(psx - width / 2);
 			this->hero->setPositionY(psy + height);
+
+			//skeletonNode->setPositionX(psx - width / 2 + 40);
+			//skeletonNode->setPositionY(psy + height-10);
 
 			this->startPoint.x = psx - width / 2;
 			this->startPoint.y = psy + height;
@@ -188,18 +211,18 @@ bool PlayLevelScene::init()
 
 	auto layoutBottom = contentLayout->getChildByName("layoutBottom_mainscene");
 	auto loadbIntensity = static_cast<LoadingBar*>(layoutBottom->getChildByName("loadbIntensity_mainScene"));
-	loadbIntensity->setScaleX(1/scaleX);
-	loadbIntensity->setScaleY(1 / scaleY);
+	loadbIntensity->setScaleX(minscale / scaleX);
+	loadbIntensity->setScaleY(minscale / scaleY);
 	loadbIntensity->setPercent(0.0);
     
     auto btnReset = static_cast<Button*>(layoutBottom->getChildByName("btnReset_mainScene"));
-    btnReset->setScaleX(1/scaleX);
-    btnReset->setScaleY(1 / scaleY);
+	btnReset->setScaleX(minscale / scaleX);
+	btnReset->setScaleY(minscale / scaleY);
     btnReset->addClickEventListener(CC_CALLBACK_1(PlayLevelScene::onClickRestart,this));
 
 	auto imageBg= layoutBottom->getChildByName("imageBg_mainscene");
-	imageBg->setScaleX(1/scaleX);
-	imageBg->setScaleY(1/scaleY);
+	imageBg->setScaleX(minscale / scaleX);
+	imageBg->setScaleY(minscale / scaleY);
 
 	this->loadbar = loadbIntensity;
 

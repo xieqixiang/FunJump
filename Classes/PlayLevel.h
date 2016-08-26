@@ -7,6 +7,11 @@
 #include "PillarInfo.h"
 #include "StartGameScene.h"
 
+#include <spine/spine-cocos2dx.h>
+#include "spine/spine.h"
+
+using namespace spine;
+
 USING_NS_CC;
 using namespace cocos2d::ui;
 
@@ -14,6 +19,7 @@ class PlayLevelScene : public cocos2d::Layer
 {
 public:
 	PlayLevelScene();
+	~PlayLevelScene();
 
     static cocos2d::Scene* createScene(int section,int level);
 
@@ -81,6 +87,8 @@ private:
 	Vec2 startPoint;
 
 	ImageView *hero;
+
+	SkeletonAnimation* skeletonNode;
 
 	LoadingBar *loadbar;
 
