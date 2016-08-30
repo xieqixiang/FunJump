@@ -14,16 +14,20 @@
               <Image Name="common_btn_anniu10_sel.png" />
               <Image Name="common_btn_chongzhian.png" />
               <Image Name="common_btn_chongzhian_sel.png" />
-              <Image Name="common_icon_sctb.png" />
               <Image Name="common_scale9_yaan3.png" />
               <Image Name="common_scale9_zhezhao1.png" />
             </Folder>
           </Folder>
         </Folder>
+        <Image Name="10032710142142316edbf6037a.png" />
+        <Image Name="beijing1.png" />
+        <Image Name="beijing2.png" />
+        <Image Name="beijing3.png" />
         <Image Name="boss5_mark.png" />
         <Image Name="HelloWorld.png" />
         <Project Name="MainScene.csd" Type="Scene" />
         <Image Name="monster_0012.png" />
+        <Image Name="movehero1.png" />
         <Project Name="StartScene.csd" Type="Scene" />
         <Image Name="yellowstar.png" />
       </RootFolder>
