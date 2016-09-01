@@ -42,7 +42,9 @@ public:
 
 	bool checkCollision(float nextX,float nextY);
     
+    
     void onClickRestart(cocos2d::Ref* sender);
+    void onClickSelectLevel(cocos2d::Ref* sender);
 
 	void resetValue();
     
@@ -86,7 +88,7 @@ private:
 	
 	Vec2 startPoint;
 
-	ImageView *hero;
+	Node *hero;
 
 	SkeletonAnimation* skeletonNode;
 
@@ -100,6 +102,7 @@ private:
     
     static int curSection ;
     static int curLevel ;
+    
 	
 };
 

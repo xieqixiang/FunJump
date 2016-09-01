@@ -28,6 +28,7 @@ public:
     static bool GAME_OVER;
     static int SECTION ;
     static int LEVEL;
+    static bool SELECT_LEVEL;
 private:
 	cocos2d::Node *levelList;
 	cocos2d::Node *conStartGame;

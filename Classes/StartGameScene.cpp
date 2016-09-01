@@ -8,6 +8,7 @@ using namespace cocos2d::ui;
 
 bool StartGameScene::GAME_OVER = false;
 int StartGameScene::SECTION = 1;
+bool StartGameScene::SELECT_LEVEL = false;
 int StartGameScene::LEVEL = 1;
 
 //using namespace cocostudio::timeline;
@@ -107,26 +108,26 @@ bool StartGameScene::init()
     auto rootNode = CSLoader::createNode("StartScene.csb");
     auto mainContainer = rootNode->getChildByName("MainContainer");
     this->levelList = mainContainer->getChildByName("conLevelList_StartScene");
-	this->levelList->setScaleX(minscale / this->openglScaleX);
-	this->levelList->setScaleY(minscale / this->openglScaleY);
+	
 
     this->conStartGame = mainContainer->getChildByName("conStartGame_StartScene");
 
-	conStartGame->setScaleX(minscale / this->openglScaleX);
-	conStartGame->setScaleY(minscale / this->openglScaleY);
+	
     
     auto conGameOver = mainContainer->getChildByName("conGameOver_StartScene");
     this->conGame = conGameOver;
-	conGameOver->setScaleX(minscale / this->openglScaleX);
-	conGameOver->setScaleY(minscale / this->openglScaleY);
+	
     
     Button* btnRestartGame = dynamic_cast<Button*>(conGameOver->getChildByName("btnRestartGame_StartScene"));
     btnRestartGame->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickPlayAgain, this));
+    btnRestartGame->setScaleX(minscale / this->openglScaleX);
+    btnRestartGame->setScaleY(minscale / this->openglScaleY);
                                                    
                                                    
     Button* btnSelectLevel = dynamic_cast<Button*>(conGameOver->getChildByName("btnSelectLevel_StartScene"));
     btnSelectLevel->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickStartGame, this));
-                                                   
+    btnSelectLevel->setScaleX(minscale / this->openglScaleX);
+    btnSelectLevel->setScaleY(minscale / this->openglScaleY);
                                                    
                             
     
@@ -134,9 +135,18 @@ bool StartGameScene::init()
         conStartGame->setVisible(false);
         conGameOver->setVisible(true);
     }
+    else if(SELECT_LEVEL)
+    {
+        this->levelList->setVisible(true);
+        this->conStartGame->setVisible(false);
+        this->conGame->setVisible(false);
+    }
+    SELECT_LEVEL = false;
 
     Button* btnStartGame = dynamic_cast<Button*>(this->conStartGame->getChildByName("btnStartGame_StartScene"));
     btnStartGame->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickStartGame, this));
+    btnStartGame->setScaleX(minscale / this->openglScaleX);
+    btnStartGame->setScaleY(minscale / this->openglScaleY);
 
     for (int i = 1; i <= 12; i++)
     {
@@ -148,6 +158,8 @@ bool StartGameScene::init()
 
         Button* btnlevel = dynamic_cast<Button*>(this->levelList->getChildByName(str));
         btnlevel->addClickEventListener(CC_CALLBACK_1(StartGameScene::onClickLevel, this));
+        btnlevel->setScaleX(minscale / this->openglScaleX);
+        btnlevel->setScaleY(minscale / this->openglScaleY);
     }
     
     addChild(rootNode);

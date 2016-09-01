@@ -1,5 +1,5 @@
 #include "PlayLevel.h"
-
+#include "math.h"
 
 int PlayLevelScene::curSection = 1;
 
@@ -71,13 +71,13 @@ bool PlayLevelScene::init()
 	char cIndex[3];
 	sprintf(cIndex, "%d", index);
 	strcat(str, cIndex);
-
 	char str2[11] = "_mainScene";
 	strcat(str, str2);
 
 	Layout* levelNode = static_cast<Layout*>(contentLayout->getChildByName(str));
 	levelNode->setVisible(true);
 	this->pillarContainer = levelNode;
+    
 	this->conMaxX = -(levelNode->getContentSize().width-640);
 	levelNode->addTouchEventListener(CC_CALLBACK_2(PlayLevelScene::handleTouchEvent, this));
 
@@ -88,14 +88,20 @@ bool PlayLevelScene::init()
 	auto scaleY = openglView->getScaleY();
 
 	float minscale = scaleX < scaleY ? scaleX : scaleY;
-	auto imgHero = static_cast<ImageView*>(levelNode->getChildByName("imgHero_mainScene"));
+    
+    auto heroCon =static_cast<Widget*>(contentLayout->getChildByName("heroCon_mainScene"));
+    heroCon->setContentSize(levelNode->getContentSize());
+    heroCon->setLocalZOrder(1000);
+    heroCon->setTouchEnabled(false);
+	auto conHero = heroCon->getChildByName("conHero_mainScene");
+    
 
-	imgHero->setScaleX(minscale / scaleX);
-	imgHero->setScaleY(minscale / scaleY);
+	conHero->setScaleX(minscale / scaleX);
+	conHero->setScaleY(minscale / scaleY);
 	//imgHero->setVisible(false);
 
-	this->heroSize.width = imgHero->getContentSize().width*imgHero->getScaleX();
-	this->heroSize.height = imgHero->getContentSize().height*imgHero->getScaleY();
+	this->heroSize.width = conHero->getContentSize().width*conHero->getScaleX();
+	this->heroSize.height = conHero->getContentSize().height*conHero->getScaleY();
 
 
 	//skeletonNode = new SkeletonAnimation("armatures/pet/pet_0001.json","armatures/pet/pet_0001.atlas");
@@ -106,9 +112,9 @@ bool PlayLevelScene::init()
 
 	//levelNode->addChild(skeletonNode);
 
-	this->hero = imgHero;
+	this->hero = conHero;
 
-	int count = 0;
+	float count = 0.0;
 
 	std::vector<Widget*> vWidget;
 	
@@ -154,8 +160,10 @@ bool PlayLevelScene::init()
 		}
 		count = count + 1;
 	}
-
-	auto countMap = ceil(count / 4); 
+    
+    float temppp = count / 4.0;
+    
+	auto countMap = ceil(temppp);
 	auto tempCount = 1;
 
 	for (int i = 1; i <= countMap; i ++)
@@ -223,7 +231,12 @@ bool PlayLevelScene::init()
 	auto imageBg= layoutBottom->getChildByName("imageBg_mainscene");
 	imageBg->setScaleX(minscale / scaleX);
 	imageBg->setScaleY(minscale / scaleY);
-
+    
+    auto btnSelectLevel = static_cast<Button*>(layoutBottom->getChildByName("btnSelectLevel_mainScene"));
+    btnSelectLevel->setScaleX(minscale / scaleX);
+    btnSelectLevel->setScaleY(minscale / scaleY);
+    btnSelectLevel->addClickEventListener(CC_CALLBACK_1(PlayLevelScene::onClickSelectLevel,this));
+    
 	this->loadbar = loadbIntensity;
 
 // 	auto listener1 = EventListenerTouchOneByOne::create();
@@ -268,10 +281,20 @@ bool PlayLevelScene::init()
 // 
 // }
 
+void PlayLevelScene::onClickSelectLevel(cocos2d::Ref* sender)
+{
+    StartGameScene::SELECT_LEVEL = true;
+    auto scene = StartGameScene::createScene();
+    Director::getInstance()->replaceScene(scene);
+}
+
 void PlayLevelScene::onClickRestart(cocos2d::Ref* sender)
 {
     this->pillarContainer->setPositionX(0);
     this->pillarContainer->setPositionY(0);
+    
+    this->hero->getParent()->setPositionX(0);
+    this->hero->getParent()->setPositionY(0);
     
     this->hero->setPosition(this->startPoint);
     this->curPoint = this->startPoint;
@@ -453,6 +476,7 @@ void PlayLevelScene::runJump(float interval)
 		if (-containerNextX > this->conMaxX)
 		{
 			this->pillarContainer->setPositionX(-containerNextX);
+            this->hero->getParent()->setPositionX(-containerNextX);
 		}
 	}
 
@@ -474,7 +498,7 @@ void PlayLevelScene::runJump(float interval)
         
         PillarInfo pInfo = mp.vPillar.at(maxCount-1);
         
-        if (this->curCollisionPillar.getSize().x > 0 && this->curCollisionPillar.getPosition().x ==pInfo.getPosition().x) {
+        if (this->curCollisionPillar.getSize().x > 0 && this->curCollisionPillar.getPosition().x == pInfo.getPosition().x) {
             StartGameScene::GAME_OVER = true;
             StartGameScene::LEVEL = this->curLevel;
             StartGameScene::SECTION = this->curSection;
@@ -491,10 +515,12 @@ void PlayLevelScene::runJump(float interval)
         
         if (-(this->curPoint.x - 60) > this->conMaxX) {
             this->pillarContainer->setPositionX(-(this->curPoint.x-60));
+            this->hero->getParent()->setPositionX(-(this->curPoint.x-60));
         }
         else
         {
             this->pillarContainer->setPositionX(this->conMaxX);
+            this->hero->getParent()->setPositionX(this->conMaxX);
         }
     }
     
@@ -510,6 +536,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
     }
     
     Vec2* vPoints = this->findPoint(this->hero,nextX,nextY);
+    
     Vec2* vPrependicular = this->findPrependicular(this->hero,nextX,nextY);
     
     int size = vPillar.size();

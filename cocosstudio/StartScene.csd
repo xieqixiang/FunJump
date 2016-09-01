@@ -42,10 +42,10 @@
               <AbstractNodeData Name="conLevelList_StartScene" ActionTag="959504346" VisibleForFrame="False" Tag="53" IconVisible="False" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="960.0000" />
                 <Children>
-                  <AbstractNodeData Name="btnLevel1" ActionTag="1835748068" Tag="101" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="118.7440" RightMargin="391.2560" TopMargin="90.3800" BottomMargin="804.6200" TouchEnable="True" FontSize="24" ButtonText="第一关" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="100" Scale9Height="43" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                  <AbstractNodeData Name="btnLevel1" ActionTag="1835748068" Tag="101" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="118.7440" RightMargin="391.2560" TopMargin="90.3801" BottomMargin="804.6199" TouchEnable="True" FontSize="24" ButtonText="第一关" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="100" Scale9Height="43" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="130.0000" Y="65.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="183.7440" Y="837.1200" />
+                    <Position X="183.7440" Y="837.1199" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.2871" Y="0.8720" />
@@ -57,10 +57,10 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="btnLevel2" ActionTag="-1540795450" Tag="102" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="371.0960" RightMargin="138.9040" TopMargin="90.3800" BottomMargin="804.6200" TouchEnable="True" FontSize="24" ButtonText="第二关" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="100" Scale9Height="43" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                  <AbstractNodeData Name="btnLevel2" ActionTag="-1540795450" Tag="102" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="371.0960" RightMargin="138.9040" TopMargin="90.3801" BottomMargin="804.6199" TouchEnable="True" FontSize="24" ButtonText="第二关" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="100" Scale9Height="43" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="130.0000" Y="65.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="436.0960" Y="837.1200" />
+                    <Position X="436.0960" Y="837.1199" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.6814" Y="0.8720" />
@@ -237,14 +237,14 @@
               <AbstractNodeData Name="conGameOver_StartScene" ActionTag="-623763478" VisibleForFrame="False" Tag="66" IconVisible="False" PercentWidthEnable="True" PercentHeightEnable="True" PercentWidthEnabled="True" PercentHeightEnabled="True" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="960.0000" />
                 <Children>
-                  <AbstractNodeData Name="Text_1" ActionTag="1434242264" Tag="67" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="140.0000" RightMargin="140.0000" TopMargin="358.3680" BottomMargin="577.6320" FontSize="24" LabelText="恭喜你，通关成功。。。。。。。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="360.0000" Y="24.0000" />
+                  <AbstractNodeData Name="Text_1" ActionTag="1434242264" Tag="67" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="140.0000" RightMargin="140.0000" TopMargin="356.3680" BottomMargin="575.6320" FontSize="24" LabelText="恭喜你，通关成功。。。。。。。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="360.0000" Y="28.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="320.0000" Y="589.6320" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="26" G="26" B="26" />
                     <PrePosition X="0.5000" Y="0.6142" />
-                    <PreSize X="0.5625" Y="0.0250" />
+                    <PreSize X="0.5625" Y="0.0292" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
