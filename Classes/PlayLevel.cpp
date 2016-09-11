@@ -22,7 +22,8 @@ PlayLevelScene::PlayLevelScene() :bTouch(false),skeletonNode(nullptr), bJump(fal
     
     this->touchCount = 0;
     
-    
+    this->previous = 0;
+    this->standActionPillar = false;
 }
 
 PlayLevelScene::~PlayLevelScene()
@@ -58,14 +59,26 @@ bool PlayLevelScene::init()
 		return false;
 	}
 
-	
+	cocostudio::timeline::ActionTimeline * action = CSLoader::createTimeline("MainScene.csb");
+    
+    cocos2d::Vector<cocostudio::timeline::Timeline*> timelines = action->getTimelines();
+    
+    for (cocos2d::Vector<cocostudio::timeline::Timeline*>::const_iterator it = timelines.begin() ; it < timelines.end(); it++) {
+        int actionTag = (*it)->getActionTag();
+        this->actionTags.push_back(actionTag);
+    }
+    
 	auto rootNode = CSLoader::createNode("MainScene.csb");
 	addChild(rootNode);
+    
+    rootNode->runAction(action);
 
+    action->gotoFrameAndPlay(0,true);
+    
 	scheduleUpdate();
 	//schedule(schedule_selector(PlayLevelScene::updateCustom),0.1f,kRepeatForever,0);
 	auto contentLayout= rootNode->getChildByName("contentLayout_mainScene");
-
+   
 	char str[22] = "topLayout";
 	int index = curLevel;
 	char cIndex[3];
@@ -117,18 +130,14 @@ bool PlayLevelScene::init()
 	float count = 0.0;
 
 	std::vector<Widget*> vWidget;
+    Vector<Node*>nodes =  levelNode->getChildren();
+    int childSize = nodes.size();
 	
-	for (int i = 1; i <= 30;i++)
+	for (int i =0 ; i < childSize;i++)
 	{
-		char str3[20] = "stairs";
-	    index = 1;
-	    char str4[11] = "_mainScene";
-		index = i;
-		sprintf(cIndex,"%d",index);
-		strcat(str3, cIndex);
-		strcat(str3, str4);
-		auto childNode = static_cast<Widget*>(levelNode->getChildByName(str3));
 		
+		auto childNode = static_cast<Widget*>(nodes.at(i));
+        
 		if (childNode)
 		{
 			childNode->setScaleX(minscale / scaleX);
@@ -140,7 +149,7 @@ bool PlayLevelScene::init()
 			break;
 		}
 
-		if (i == 1)
+		if (i == 0)
 		{
 			auto psx = childNode->getPositionX();
 			auto psy = childNode->getPositionY();
@@ -178,6 +187,7 @@ bool PlayLevelScene::init()
 			auto pillarNode = vWidget.at(tempCount-1);
 			auto pillarSize = pillarNode->getContentSize();
 			auto pillarPS = pillarNode->getPosition();
+            
 			pillarSize.width = pillarSize.width*pillarNode->getScaleX();
 			pillarSize.height = pillarSize.height*pillarNode->getScaleY();
 			if (j == 1)
@@ -191,7 +201,9 @@ bool PlayLevelScene::init()
 			}
 
 			PillarInfo pillarInfo;
-			Vec2* vPointInfo = this->findPoint(pillarNode,0,0);//Àƒ∏ˆ◊¯±Íµƒ–≈œ¢
+            pillarInfo.setNode(pillarNode);
+            pillarInfo.setActionTag(pillarNode->getActionTag());
+			Vec2* vPointInfo = this->findPoint(pillarSize,pillarPS.x,pillarPS.y,pillarNode->getScaleX(),pillarNode->getScaleY());
 			pillarInfo.setPointA(vPointInfo[0].x, vPointInfo[0].y);
 			pillarInfo.setPointB(vPointInfo[1].x, vPointInfo[1].y);
 			pillarInfo.setPointC(vPointInfo[2].x, vPointInfo[2].y);
@@ -202,7 +214,7 @@ bool PlayLevelScene::init()
 
 			delete []vPointInfo;
 
-			Vec2* vPrependicular = this->findPrependicular(pillarNode, 0, 0); //Õ∂”∞÷·
+			Vec2* vPrependicular = this->findPrependicular(pillarSize,pillarPS.x,pillarPS.y,pillarNode->getScaleX(),pillarNode->getScaleY());
 			pillarInfo.setEdge1Normalize(vPrependicular[0].x, vPrependicular[0].y);
 			pillarInfo.setEdge1Normalize(vPrependicular[1].x, vPrependicular[1].y);
 			pillarInfo.setEdge1Normalize(vPrependicular[2].x, vPrependicular[2].y);
@@ -212,6 +224,9 @@ bool PlayLevelScene::init()
 			delete []vPrependicular;
 
 			tempCount = tempCount + 1;
+            if (i == 1 && j == 1) {
+                this->frontPillar = pillarInfo;
+            }
 		}
 		vMap.push_back(mapPillar);
 	}
@@ -298,6 +313,9 @@ void PlayLevelScene::onClickRestart(cocos2d::Ref* sender)
     
     this->hero->setPosition(this->startPoint);
     this->curPoint = this->startPoint;
+    
+    this->standActionPillar = false;
+    this->frontPillar.setNode(nullptr);
 }
 
 void PlayLevelScene::update(float dt)
@@ -325,26 +343,34 @@ void PlayLevelScene::update(float dt)
 			this->loadbar->setPercent(percent - 1);
 		}
 	}
+    
+    if (this->standActionPillar == true && this->curCollisionPillar.getNode() != nullptr ) {
+        Node* node = this->curCollisionPillar.getNode();
+        float psy = node->getPositionY();
+        float nodeHeight = node->getContentSize().height;
+        
+        this->hero->setPositionY(psy+nodeHeight);
+    }
+    
 	if (this->bJump)
 	{
 		this->runJump(dt);
 	}
 }
 
-cocos2d::Vec2 * PlayLevelScene::findPoint(cocos2d::Node* node, float psx, float psy)
+cocos2d::Vec2 * PlayLevelScene::findPoint(cocos2d::Size nodeSize, float psx, float psy,float scaleX,float scaleY)
 {
 	if (psx <= 0.0 && psy <= 0.0)
 	{
-		psx = node->getPositionX();
-		psy = node->getPositionY();
+		psx = psx;
+		psy = psy;
 	}
 
 	float tempPsx = psx;
 	float tempPsy = psy;
 
-	cocos2d::Size nodeSize = node->getContentSize();
-	float width = nodeSize.width*node->getScaleX();
-	float height = nodeSize.height*node->getScaleY();
+	float width = nodeSize.width*scaleX;
+	float height = nodeSize.height*scaleY;
 
 	cocos2d::Vec2 *vec2 = new Vec2[4];
 	vec2[0].x = tempPsx;
@@ -362,9 +388,9 @@ cocos2d::Vec2 * PlayLevelScene::findPoint(cocos2d::Node* node, float psx, float 
 	return vec2;
 }
 
-Vec2 * PlayLevelScene::findPrependicular(cocos2d::Node* node, float psx, float psy)
+Vec2 * PlayLevelScene::findPrependicular(cocos2d::Size nodeSize, float psx, float psy,float scaleX,float scaleY)
 {
-	Vec2* fourPoint = this->findPoint(node, psx, psy);
+	Vec2* fourPoint = this->findPoint(nodeSize, psx, psy, scaleX, scaleY);
 
 	Vec2* edge1 = new Vec2(fourPoint[1].x-fourPoint[0].x,fourPoint[1].y-fourPoint[0].y);
 	Vec2* edge2 = new Vec2(fourPoint[2].x - fourPoint[1].x, fourPoint[2].y - fourPoint[1].y);
@@ -443,11 +469,14 @@ void PlayLevelScene::handleTouchEvent(cocos2d::Ref* ref, Widget::TouchEventType 
 		this->bJump = true;
         this->touchCount = this->touchCount + 1;
         this->loadbar->setPercent(0);
+        this->pillarName = "";
 	}
 }
 
 void PlayLevelScene::runJump(float interval)
 {
+    
+    this->standActionPillar = false;
 	float nextX = this->hero->getPositionX() + interval*this->tempAcceleration;
 	float nextY = this->hero->getPositionY() + interval*this->tempUp;
 
@@ -485,13 +514,13 @@ void PlayLevelScene::runJump(float interval)
     if (this->bCollision) {
         if (this->curCollisionPillar.getSize().x > 0) {
             Vec2 size= this->curCollisionPillar.getSize();
-            float psy = this->curCollisionPillar.getPosition().y;
+            float psy = this->curCollisionPillar.getNode()->getPositionY();
             this->hero->setPosition(Vec2(nextX,size.y+psy));
             this->curPoint.x = nextX;
-            this->curPoint.y = size.y+psy;
+            this->frontPillar = this->curCollisionPillar;
         }
         
-        int maxCount = this->vMap.size();
+        auto maxCount = this->vMap.size();
         MapPillar mp = this->vMap.at(maxCount-1);
         
         maxCount = mp.vPillar.size();
@@ -511,7 +540,22 @@ void PlayLevelScene::runJump(float interval)
     
     if (nextY <= -50) {
         this->resetValue();
-        this->hero->setPosition(this->curPoint);
+        this->hero->setPositionX(this->curPoint.x);
+        if (this->frontPillar.getNode() != nullptr) {
+            this->hero->setPositionY(this->frontPillar.getNode()->getPositionY()+this->frontPillar.getSize().y);
+        }
+        else
+        {
+            this->hero->setPositionY(this->curPoint.y);
+        }
+        
+        if (this->frontPillar.getNode() != nullptr) {
+            int actionTag = this->frontPillar.getActionTag();
+            bool bPlayAction  = this->bPlayingAction(actionTag);
+            if (bPlayAction) {
+                this->standActionPillar = true;
+            }
+        }
         
         if (-(this->curPoint.x - 60) > this->conMaxX) {
             this->pillarContainer->setPositionX(-(this->curPoint.x-60));
@@ -535,14 +579,26 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         vPillar = this->vMap.at(this->vMap.size()-1).vPillar;
     }
     
-    Vec2* vPoints = this->findPoint(this->hero,nextX,nextY);
+    if (this->previous <= 0) {
+        this->previous = nextY;
+    }
     
-    Vec2* vPrependicular = this->findPrependicular(this->hero,nextX,nextY);
+    Vec2* vPoints = this->findPoint(this->heroSize,nextX,nextY,this->hero->getScaleX(),this->hero->getScaleY());
+    
+    Vec2* vPrependicular = this->findPrependicular(this->heroSize,nextX,nextY,this->hero->getScaleX(),this->hero->getScaleY());
     
     int size = vPillar.size();
     for (int i = 0 ; i < size ; i++) {
         PillarInfo pInfo = vPillar.at(i);
-        float height =pInfo.getPosition().y+ pInfo.getSize().y;
+        
+        float height =pInfo.getNode()->getPositionY()+ pInfo.getSize().y;
+        
+        float width = pInfo.getSize().x;
+        float pillarPSX = pInfo.getPosition().x;
+        if (nextX > pillarPSX + width or nextX + this->heroSize.width  < pillarPSX) {
+            continue;
+        }
+        
         Vec2 pillarPointA = pInfo.getPointA();
         Vec2 pillarPointB = pInfo.getPointB();
         Vec2 pillarPointC = pInfo.getPointC();
@@ -552,6 +608,43 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         Vec2 pillarEdge2Normalize = pInfo.getEdge2Normalize();
         Vec2 pillarEdge3Normalize = pInfo.getEdge3Normalize();
         Vec2 pillarEdge4Normalize = pInfo.getEdge4Normalize();
+        
+        int actionTag = pInfo.getActionTag();
+        bool bPlayAction  = this->bPlayingAction(actionTag);
+        bool bCollision = true;
+        std::string nodeName = pInfo.getNode()->getName();
+        int index = nodeName.find("dead");
+        if (index >= 0) {
+            bCollision = false;
+        }
+        if (bPlayAction) {
+            cocos2d::Size tempSize;
+            tempSize.width = pInfo.getSize().x;
+            tempSize.height = pInfo.getSize().y;
+            cocos2d::Vec2 tempP = pInfo.getNode()->getPosition();
+            if (this->pillarName == "" && bCollision) {
+                this->pillarName  = pInfo.getNode()->getName();
+                this->previousF = tempP.y;
+            }
+           
+            
+            float scaleXX = pInfo.getNode()->getScaleX();
+            float scaleYY = pInfo.getNode()->getScaleY();
+            
+             Vec2* temp = this->findPrependicular(tempSize,tempP.x,tempP.y,scaleXX,scaleYY);
+             pillarEdge1Normalize = temp[0];
+             pillarEdge2Normalize = temp[1];
+             pillarEdge3Normalize = temp[2];
+             pillarEdge4Normalize = temp[3];
+            
+            
+            Vec2* tempPoint = this->findPoint(tempSize,tempP.x,tempP.y,scaleXX,scaleYY);
+            pillarPointA  = tempPoint[0];
+            pillarPointB  = tempPoint[1];
+            pillarPointC  = tempPoint[2];
+            pillarPointD  = tempPoint[3];
+           
+        }
         
         bool sign1 = false;
         
@@ -575,7 +668,10 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float heroNodeEdge1Max = this->customMax(heroPointAPSByNodeEdge1,heroPointBPSByNodeEdge1,heroPointCPSByNodeEdge1,heroPointDPSByNodeEdge1);
         float heroNodeEdge1Min = this->customMin(heroPointAPSByNodeEdge1,heroPointBPSByNodeEdge1,heroPointCPSByNodeEdge1,heroPointDPSByNodeEdge1);
         
+        float distance1 = -1;
+        
         if (heroNodeEdge1Min <= pillarNodeEdge1Max && heroNodeEdge1Max >= pillarNodeEdge1Min) {
+            distance1 = pillarNodeEdge1Min - heroNodeEdge1Min;
             sign1 = true;
         }
         
@@ -594,8 +690,10 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float heroNodeEdge2Max = this->customMax(heroPointAPSByNodeEdge2,heroPointBPSByNodeEdge2,heroPointCPSByNodeEdge2,heroPointDPSByNodeEdge2);
         float heroNodeEdge2Min = this->customMin(heroPointAPSByNodeEdge2,heroPointBPSByNodeEdge2,heroPointCPSByNodeEdge2,heroPointDPSByNodeEdge2);
         
+        float distance2 = -1;
         if ( heroNodeEdge2Min <= pillarNodeEdge2Max && heroNodeEdge2Max >= pillarNodeEdge2Min)
         {
+             distance2 = pillarNodeEdge2Min - heroNodeEdge2Min;
             sign2 = true;
         }
         
@@ -615,9 +713,11 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float heroNodeEdge3Max = this->customMax(heroPointAPSByNodeEdge3,heroPointBPSByNodeEdge3,heroPointCPSByNodeEdge3,heroPointDPSByNodeEdge3);
         float heroNodeEdge3Min = this->customMin(heroPointAPSByNodeEdge3,heroPointBPSByNodeEdge3,heroPointCPSByNodeEdge3,heroPointDPSByNodeEdge3);
         
+        float distance3 = -1;
         bool sign3 = false;
         if (heroNodeEdge3Min <= pillarNodeEdge3Max && heroNodeEdge3Max >= pillarNodeEdge3Min)
         {
+             distance3 = pillarNodeEdge3Min - heroNodeEdge3Min;
             sign3 = true;
         }
         
@@ -636,13 +736,13 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float heroNodeEdge4Max = this->customMax(heroPointAPSByNodeEdge4,heroPointBPSByNodeEdge4,heroPointCPSByNodeEdge4,heroPointDPSByNodeEdge4);
         float heroNodeEdge4Min = this->customMin(heroPointAPSByNodeEdge4,heroPointBPSByNodeEdge4,heroPointCPSByNodeEdge4,heroPointDPSByNodeEdge4);
         
+        float distance4 = -1;
         bool sign4 = false;
         if (heroNodeEdge4Min <= pillarNodeEdge4Max && heroNodeEdge4Max >= pillarNodeEdge4Min)
         {
+            distance4 = pillarNodeEdge4Min - heroNodeEdge4Min;
             sign4 = true;
         }
-        
-        
         
         
         float AAA1 = pillarPointA.x * vPrependicular[0].x + pillarPointA.y * vPrependicular[0].y;
@@ -660,8 +760,10 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float ADMin = this->customMin(ABA1,ABB1,ABC1,ABD1);
         
         bool sign5 = false;
+        float distance5 = -1;
         if (ADMin <= ACMax && ADMax >= ACMin)
         {
+            distance5 = ACMin - ADMin;
             sign5 = true;
         };
         
@@ -680,8 +782,10 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float BDMin = this->customMin(BBA1,BBB1,BBC1,BBD1);
         
         bool sign6 = false;
+        float distance6 = -1;
         if (BDMin <= BCMax && BDMax >= BCMin)
         {
+            distance6 = BCMin - BDMin;
             sign6 = true;
         }
         
@@ -700,8 +804,10 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float CDMin =this->customMin(CBA1,CBB1,CBC1,CBD1);
 
         bool sign7 = false;
+        float distance7 = -1;
         if (CDMin <= CCMax && CDMax >= CCMin)
         {
+            distance7 = CCMin - CDMin;
             sign7 = true;
         }
         
@@ -723,23 +829,45 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         
         
         bool sign8 = false;
+        float distance8 = -1;
         if (DDMin <= DCMax && DDMax >= DCMin)
         {
+            distance8 = DCMin - DDMin;
             sign8 = true;
         }
         
         if (sign1 && sign2 && sign3 && sign4 && sign5 && sign6 && sign7 && sign8) {
             
-            if (this->tempUp < 0 && nextY + 10 >= height) {
+            bool actionDirUp = false;
+            if (bPlayAction) {
+                if (this->previousF < pInfo.getNode()->getPositionY() && this->pillarName == pInfo.getNode()->getName()) {
+                    actionDirUp = true;
+                }
+            }
+            
+            if (this->previous >= height && bCollision == true  && bPlayAction == false) {
                 this->bCollisionPillar = false;
                 this->curCollisionPillar = pInfo;
                 delete []vPoints;
                 delete []vPrependicular;
+                
                 return true;
+            }
+            else if(bPlayAction && bCollision == true )
+            {
+                if ( (actionDirUp == false && this->previous >= height && bCollision == true ) || (actionDirUp == true && this->previous < height)) {
+                    this->bCollisionPillar = false;
+                    this->curCollisionPillar = pInfo;
+                    delete []vPoints;
+                    delete []vPrependicular;
+                    this->standActionPillar = true;
+                    return true;
+
+                }
             }
             else
             {
-                if (nextY < height) {
+                if (nextY < height || bCollision == false) {
                     this->curCollisionPillar = pInfo;
                     this->bCollisionPillar = true;
                 }
@@ -748,7 +876,15 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
                 return false;
             }
         }
+        
+        if (this->pillarName == pInfo.getNode()->getName() && bCollision) {
+            this->pillarName  = pInfo.getNode()->getName();
+            this->previousF = pInfo.getNode()->getPositionY();
+        }
+
     }
+    
+    this->previous  = nextY;
     delete []vPoints;
     delete []vPrependicular;
     this->bCollisionPillar = false;
@@ -814,6 +950,16 @@ void PlayLevelScene::resetValue()
 
 	this->bCollisionPillar = false;
 	this->bCollision = false;
-    PillarInfo pInfo ;
-    curCollisionPillar =pInfo;
+    
+}
+
+bool PlayLevelScene::bPlayingAction(int actionTag)
+{
+    int size = this->actionTags.size();
+    for (int i = 0; i < size ; i++) {
+        if (actionTag == this->actionTags[i]) {
+            return true;
+        }
+    }
+    return  false;
 }

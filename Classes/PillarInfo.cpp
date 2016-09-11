@@ -1,7 +1,7 @@
 #include "PillarInfo.h"
 
 
-PillarInfo::PillarInfo()
+PillarInfo::PillarInfo():node(nullptr)
 {
 }
 
@@ -120,3 +120,24 @@ cocos2d::Vec2 PillarInfo::getEdge4Normalize()
 {
 	return this->edge4Normalize;
 }
+
+void PillarInfo::setActionTag(int actionT)
+{
+    this->actionTag = actionT;
+}
+
+int PillarInfo::getActionTag()
+{
+    return this->actionTag;
+}
+
+void PillarInfo::setNode (cocos2d::Node* node)
+{
+    this->node = node;
+}
+
+cocos2d::Node* PillarInfo::getNode()
+{
+    return  this->node;
+}
+

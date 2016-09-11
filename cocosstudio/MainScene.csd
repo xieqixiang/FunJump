@@ -2,7 +2,79 @@
   <PropertyGroup Name="MainScene" Type="Scene" ID="a2ee0952-26b5-49ae-8bf9-4f1d6279b798" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
-      <Animation Duration="0" Speed="1.0000" />
+      <Animation Duration="120" Speed="1.0000">
+        <Timeline ActionTag="-1589109732" Property="Position">
+          <PointFrame FrameIndex="0" X="493.3766" Y="0.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="60" X="493.3765" Y="260.0002">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="120" X="493.3765" Y="0.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+        </Timeline>
+        <Timeline ActionTag="-1589109732" Property="Scale">
+          <ScaleFrame FrameIndex="0" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="60" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="120" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+        <Timeline ActionTag="-1589109732" Property="RotationSkew">
+          <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="60" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="120" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+        <Timeline ActionTag="839566840" Property="Position">
+          <PointFrame FrameIndex="0" X="872.2343" Y="0.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="60" X="872.2343" Y="232.1130">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="120" X="872.2343" Y="0.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+        </Timeline>
+        <Timeline ActionTag="839566840" Property="Scale">
+          <ScaleFrame FrameIndex="0" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="60" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="120" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+        <Timeline ActionTag="839566840" Property="RotationSkew">
+          <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="60" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="120" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+      </Animation>
+      <AnimationList>
+        <AnimationInfo Name="animation0" StartIndex="0" EndIndex="50">
+          <RenderColor A="255" R="176" G="196" B="222" />
+        </AnimationInfo>
+      </AnimationList>
       <ObjectData Name="MainScene" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="960.0000" />
         <Children>
@@ -34,16 +106,16 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleX="0.5446" ScaleY="-0.8387" />
               </AbstractNodeData>
-              <AbstractNodeData Name="heroCon_mainScene" ActionTag="-219062240" Tag="382" IconVisible="False" PercentHeightEnable="True" PercentHeightEnabled="True" RightMargin="-1295.8199" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="heroCon_mainScene" ActionTag="-219062240" Tag="382" IconVisible="False" PercentHeightEnable="True" PercentHeightEnabled="True" RightMargin="-1295.8199" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="1935.8199" Y="960.0000" />
                 <Children>
-                  <AbstractNodeData Name="conHero_mainScene" ActionTag="-1173632690" Tag="383" IconVisible="False" LeftMargin="79.8338" RightMargin="1805.9861" TopMargin="824.4629" BottomMargin="85.5371" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="conHero_mainScene" ActionTag="-1173632690" Tag="383" IconVisible="False" LeftMargin="79.8338" RightMargin="1805.9861" TopMargin="824.4629" BottomMargin="85.5371" TouchEnable="True" ClipAble="False" BackColorAlpha="0" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="50.0000" Y="50.0000" />
                     <Children>
-                      <AbstractNodeData Name="Image_7" ActionTag="1362710253" Tag="384" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="3.0558" RightMargin="6.9442" TopMargin="-1.5026" BottomMargin="1.5026" LeftEage="72" RightEage="72" TopEage="90" BottomEage="90" Scale9OriginX="72" Scale9OriginY="90" Scale9Width="76" Scale9Height="94" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="Image_7" ActionTag="1362710253" Tag="384" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="3.0550" RightMargin="6.9450" TopMargin="-1.5050" BottomMargin="1.5050" LeftEage="72" RightEage="72" TopEage="90" BottomEage="90" Scale9OriginX="72" Scale9OriginY="90" Scale9Width="76" Scale9Height="94" ctype="ImageViewObjectData">
                         <Size X="40.0000" Y="50.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <Position X="23.0558" Y="26.5026" />
+                        <Position X="23.0550" Y="26.5050" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <PrePosition X="0.4611" Y="0.5301" />
@@ -74,7 +146,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="topLayout1_mainScene" ActionTag="742701221" VisibleForFrame="False" Alpha="227" Tag="26" IconVisible="False" PercentHeightEnable="True" PercentHeightEnabled="True" RightMargin="-1295.8197" TouchEnable="True" ClipAble="False" BackColorAlpha="226" ColorAngle="298.0000" LeftEage="237" RightEage="237" TopEage="422" BottomEage="422" Scale9OriginX="-237" Scale9OriginY="-422" Scale9Width="474" Scale9Height="844" ctype="PanelObjectData">
+              <AbstractNodeData Name="topLayout1_mainScene" ActionTag="742701221" Alpha="227" Tag="26" IconVisible="False" PercentHeightEnable="True" PercentHeightEnabled="True" RightMargin="-1295.8197" TouchEnable="True" ClipAble="False" BackColorAlpha="226" ColorAngle="298.0000" LeftEage="237" RightEage="237" TopEage="422" BottomEage="422" Scale9OriginX="-237" Scale9OriginY="-422" Scale9Width="474" Scale9Height="844" ctype="PanelObjectData">
                 <Size X="1935.8197" Y="960.0000" />
                 <Children>
                   <AbstractNodeData Name="stairs1_mainScene" ActionTag="-428462310" Tag="1" IconVisible="False" LeftMargin="60.6850" RightMargin="1840.1348" TopMargin="878.6257" BottomMargin="1.3743" ClipAble="False" ComboBoxIndex="2" ColorAngle="90.0000" LeftEage="10" RightEage="10" TopEage="10" BottomEage="10" Scale9OriginX="10" Scale9OriginY="10" Scale9Width="12" Scale9Height="12" ctype="PanelObjectData">
@@ -117,39 +189,39 @@
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.3420" ScaleY="-0.9397" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs4_mainScene" ActionTag="2006610140" Tag="30" IconVisible="False" LeftMargin="362.0520" RightMargin="1508.4905" TopMargin="724.9767" BottomMargin="1.1131" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
-                    <Size X="65.2772" Y="233.9102" />
+                  <AbstractNodeData Name="stairs4_mainScene" ActionTag="2006610140" Tag="30" IconVisible="False" LeftMargin="360.0520" RightMargin="1520.4877" TopMargin="726.0898" ClipAble="False" ComboBoxIndex="2" ColorAngle="257.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="55.2800" Y="233.9102" />
                     <AnchorPoint />
-                    <Position X="362.0520" Y="1.1131" />
+                    <Position X="360.0520" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.1870" Y="0.0012" />
-                    <PreSize X="0.0337" Y="0.2437" />
+                    <PrePosition X="0.1860" />
+                    <PreSize X="0.0286" Y="0.2437" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
                     <EndColor A="255" R="255" G="255" B="0" />
-                    <ColorVector ScaleX="-0.3420" ScaleY="-0.9397" />
+                    <ColorVector ScaleX="-0.2250" ScaleY="-0.9744" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs5_mainScene" ActionTag="-1589109732" Tag="31" IconVisible="False" LeftMargin="483.8725" RightMargin="1406.3301" TopMargin="820.0268" BottomMargin="1.1131" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                  <AbstractNodeData Name="dead5_mainScene" ActionTag="-1589109732" Tag="31" IconVisible="False" LeftMargin="493.3766" RightMargin="1396.8259" TopMargin="821.1399" ClipAble="False" ComboBoxIndex="2" ColorAngle="260.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="45.6172" Y="138.8601" />
                     <AnchorPoint />
-                    <Position X="483.8725" Y="1.1131" />
+                    <Position X="493.3766" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2500" Y="0.0012" />
+                    <PrePosition X="0.2549" />
                     <PreSize X="0.0236" Y="0.1446" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
                     <EndColor A="255" R="255" G="255" B="0" />
-                    <ColorVector ScaleX="-0.3420" ScaleY="-0.9397" />
+                    <ColorVector ScaleX="-0.1736" ScaleY="-0.9848" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs6_mainScene" ActionTag="-1019486362" Tag="21" IconVisible="False" LeftMargin="601.8315" RightMargin="1287.0852" TopMargin="763.7707" BottomMargin="1.1131" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                  <AbstractNodeData Name="stairs6_mainScene" ActionTag="-1019486362" Tag="21" IconVisible="False" LeftMargin="601.8314" RightMargin="1287.0852" TopMargin="764.8838" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="46.9031" Y="195.1162" />
                     <AnchorPoint />
-                    <Position X="601.8315" Y="1.1131" />
+                    <Position X="601.8314" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.3109" Y="0.0012" />
+                    <PrePosition X="0.3109" />
                     <PreSize X="0.0242" Y="0.2032" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
@@ -169,14 +241,14 @@
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.3420" ScaleY="-0.9397" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs8_mainScene" ActionTag="839566840" Tag="23" IconVisible="False" LeftMargin="883.2349" RightMargin="998.1782" TopMargin="735.9315" BottomMargin="1.1131" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
-                    <Size X="54.4066" Y="222.9554" />
+                  <AbstractNodeData Name="stairs8_mainScene" ActionTag="839566840" Tag="23" IconVisible="False" LeftMargin="872.2343" RightMargin="979.1754" TopMargin="737.0446" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="84.4100" Y="222.9554" />
                     <AnchorPoint />
-                    <Position X="883.2349" Y="1.1131" />
+                    <Position X="872.2343" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4563" Y="0.0012" />
-                    <PreSize X="0.0281" Y="0.2322" />
+                    <PrePosition X="0.4506" />
+                    <PreSize X="0.0436" Y="0.2322" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
                     <EndColor A="255" R="255" G="255" B="0" />
@@ -4610,7 +4682,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleX="0.2588" ScaleY="-0.9659" />
               </AbstractNodeData>
-              <AbstractNodeData Name="layoutBottom_mainscene" Visible="False" ActionTag="-920495214" Tag="3" IconVisible="False" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentWidthEnabled="True" LeftMargin="-1.1505" RightMargin="1.1505" TopMargin="1.2480" BottomMargin="825.5302" TouchEnable="True" ClipAble="False" ComboBoxIndex="2" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="layoutBottom_mainscene" Visible="False" ActionTag="-920495214" Tag="3" IconVisible="False" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentWidthEnabled="True" LeftMargin="-2.1663" RightMargin="2.1663" TopMargin="-0.7703" BottomMargin="827.5485" TouchEnable="True" ClipAble="False" ComboBoxIndex="2" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="133.2218" />
                 <Children>
                   <AbstractNodeData Name="Text_1" ActionTag="1978269835" Tag="4" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="11.6480" RightMargin="550.3520" TopMargin="12.9429" BottomMargin="89.2789" FontSize="26" LabelText="力度：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
@@ -4759,10 +4831,10 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleY="1.0000" />
-                <Position X="-1.1505" Y="958.7520" />
+                <Position X="-2.1663" Y="960.7703" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="-0.0018" Y="0.9987" />
+                <PrePosition X="-0.0034" Y="1.0008" />
                 <PreSize X="1.0000" Y="0.1388" />
                 <SingleColor A="255" R="245" G="245" B="145" />
                 <FirstColor A="255" R="255" G="255" B="0" />

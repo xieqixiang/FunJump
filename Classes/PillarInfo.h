@@ -2,7 +2,7 @@
 #define __PillarInfo_H__
 
 #include "cocos2d.h"
-//保存柱子的信息
+
 class PillarInfo
 {
 public:
@@ -34,7 +34,14 @@ public:
 	cocos2d::Vec2 getEdge2Normalize();
 	cocos2d::Vec2 getEdge3Normalize();
 	cocos2d::Vec2 getEdge4Normalize();
-
+    
+    void setActionTag(int actionTag);
+    int getActionTag();
+    
+    void setNode (cocos2d::Node* node);
+    cocos2d::Node* getNode();
+    
+    
 private:
 	cocos2d::Vec2 pointA;
 	cocos2d::Vec2 pointB;
@@ -48,6 +55,10 @@ private:
 
 	cocos2d::Vec2 ps;
 	cocos2d::Vec2 size;
+    
+    cocos2d::Node *node;
+    
+    int actionTag;
 
 };
 

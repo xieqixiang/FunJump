@@ -35,9 +35,9 @@ public:
 
 	void runJump(float interval);
 
-	Vec2 * findPoint(cocos2d::Node* node, float psx, float psy);
+	Vec2 * findPoint(cocos2d::Size, float psx, float psy,float scaleX,float scaleY);
 
-	Vec2 *findPrependicular(cocos2d::Node* node,float psx,float psy);
+	Vec2 *findPrependicular(cocos2d::Size,float psx,float psy,float scaleX,float scaleY);
 
 
 	bool checkCollision(float nextX,float nextY);
@@ -58,6 +58,8 @@ public:
 		float maxX;
 		std::vector<PillarInfo> vPillar;
 	};
+    
+    bool bPlayingAction(int actionTag);
 
 private:
 	bool bTouch;
@@ -85,6 +87,8 @@ private:
 	Layout* pillarContainer;
 
 	PillarInfo curCollisionPillar;
+    
+    PillarInfo frontPillar;
 	
 	Vec2 startPoint;
 
@@ -98,11 +102,19 @@ private:
 
 	std::vector<MapPillar> vMap;
     
+    std::vector<int> actionTags;
+    
     Vec2 curPoint;
     
     static int curSection ;
     static int curLevel ;
     
+    float previous;
+    
+    std::string pillarName;
+    float previousF;
+    
+    bool standActionPillar;
 	
 };
 
