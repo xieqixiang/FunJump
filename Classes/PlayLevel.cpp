@@ -131,6 +131,7 @@ bool PlayLevelScene::init()
 	float count = 0.0;
 
 	std::vector<Widget*> vWidget;
+
     Vector<Node*>nodes =  levelNode->getChildren();
     int childSize = nodes.size();
 	
@@ -138,12 +139,17 @@ bool PlayLevelScene::init()
 	{
 		
 		auto childNode = static_cast<Widget*>(nodes.at(i));
-        
-		if (childNode)
+		childNode->setScaleX(minscale / scaleX);
+		childNode->setScaleY(minscale / scaleY);
+		auto childNode2 = dynamic_cast<Layout*>(childNode);
+		if (childNode2 && childNode != nullptr)
 		{
-			childNode->setScaleX(minscale / scaleX);
-			childNode->setScaleY(minscale / scaleY);
 			vWidget.push_back(childNode);
+			count = count + 1;
+		}
+		else if (childNode2 == nullptr && childNode != nullptr)
+		{
+			this->startS.push_back(childNode);
 		}
 		else
 		{
@@ -168,7 +174,7 @@ bool PlayLevelScene::init()
             
             this->curPoint = this->startPoint;
 		}
-		count = count + 1;
+		
 	}
     
     float temppp = count / 4.0;
@@ -317,6 +323,12 @@ void PlayLevelScene::onClickRestart(cocos2d::Ref* sender)
     
     this->standActionPillar = false;
     this->frontPillar.setNode(nullptr);
+
+	int sizes = this->startS.size();
+	for (int i = 0; i < sizes; i++)
+	{
+		this->startS.at(i)->setVisible(true);
+	}
 }
 
 void PlayLevelScene::update(float dt)
@@ -565,6 +577,7 @@ void PlayLevelScene::runJump(float interval)
 
 bool PlayLevelScene::checkCollision(float nextX, float nextY)
 {
+	this->checkStart(nextX, nextY);
     std::vector<PillarInfo> vPillar = this->findNearPillarMap(nextX,nextY);
     if (vPillar.size() <= 0) {
         vPillar = this->vMap.at(this->vMap.size()-1).vPillar;
@@ -864,9 +877,32 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
     this->previousY  = nextY;
 	this->previousX = nextX + (this->heroSize.width * hero->getScaleX());
     delete []vPoints;
-    delete []vPrependicular;
+	delete[]vPrependicular;
     this->bCollisionPillar = false;
     return false;
+}
+
+bool PlayLevelScene::checkStart(float nextX, float nextY)
+{
+	int size = this->startS.size();
+	for (int i = 0; i < size; i++)
+	{
+		Node* start = this->startS.at(i);
+		if (start->isVisible())
+		{
+			float psx = start->getPositionX();
+			float psy = start->getPositionY();
+			float widthS = start->getContentSize().width*start->getScaleX();
+			float heightS = start->getContentSize().height*start->getScaleY();
+			
+			if (nextX + this->heroSize.width > psx && nextX + this->heroSize.width <= psx + widthS && nextY + this->heroSize.height > psy && nextY + this->heroSize.height <= psy + heightS)
+			{
+				start->setVisible(false);
+			}
+		}
+		
+	}
+	return false;
 }
 
 float PlayLevelScene::customMax(float a,float b ,float c,float d)

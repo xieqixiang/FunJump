@@ -46,6 +46,8 @@ public:
     void onClickRestart(cocos2d::Ref* sender);
     void onClickSelectLevel(cocos2d::Ref* sender);
 
+	bool checkStart(float nextX,float nextY);
+
 	void resetValue();
     
     std::vector<PillarInfo> findNearPillarMap(float psx,float psy);
@@ -103,6 +105,7 @@ private:
 	Size heroSize;
 
 	std::vector<MapPillar> vMap;
+	std::vector<Node*> startS;
     
     std::vector<int> actionTags;
     
