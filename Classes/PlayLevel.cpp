@@ -849,7 +849,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         
         if (sign1 && sign2 && sign3 && sign4 && sign5 && sign6 && sign7 && sign8) {
             
-			if (this->previousX >  pillarPSX && this->previousX - this->heroSize.width <= pillarPSX +width && bCollision == true && bPlayAction == false) {
+			if (this->previousX >  pillarPSX && nextX <= pillarPSX +width && bCollision == true && bPlayAction == false) {
                 this->bCollisionPillar = false;
                 this->curCollisionPillar = pInfo;
                 delete []vPoints;
@@ -859,7 +859,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
 				this->standActionPillar = false;
                 return true;
             }
-			else if (bPlayAction && bCollision == true && this->previousX > pillarPSX && this->previousX - this->heroSize.width <= pillarPSX+width)
+			else if (bPlayAction && bCollision == true && this->previousX > pillarPSX && nextX <= pillarPSX+width)
 			{
 					this->bCollisionPillar = false;
 					this->curCollisionPillar = pInfo;
