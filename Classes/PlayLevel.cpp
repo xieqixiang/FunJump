@@ -22,7 +22,8 @@ PlayLevelScene::PlayLevelScene() :bTouch(false),skeletonNode(nullptr), bJump(fal
     
     this->touchCount = 0;
     
-    this->previous = 0;
+    this->previousY = 0;
+	this->previousX = 0;
     this->standActionPillar = false;
 }
 
@@ -344,7 +345,7 @@ void PlayLevelScene::update(float dt)
 		}
 	}
     
-    if (this->standActionPillar == true && this->curCollisionPillar.getNode() != nullptr ) {
+	if (this->standActionPillar == true && this->bJump == false) {
         Node* node = this->curCollisionPillar.getNode();
         float psy = node->getPositionY();
         float nodeHeight = node->getContentSize().height;
@@ -476,7 +477,7 @@ void PlayLevelScene::handleTouchEvent(cocos2d::Ref* ref, Widget::TouchEventType 
 void PlayLevelScene::runJump(float interval)
 {
     
-    this->standActionPillar = false;
+
 	float nextX = this->hero->getPositionX() + interval*this->tempAcceleration;
 	float nextY = this->hero->getPositionY() + interval*this->tempUp;
 
@@ -495,9 +496,9 @@ void PlayLevelScene::runJump(float interval)
 		this->tempAcceleration = 0;
 		this->pillarContainer->setTouchEnabled(false);
 		
-		if (this->curCollisionPillar.getSize().x > 0 && nextX > this->curCollisionPillar.getPosition().x-this->heroSize.width)
+		if (this->curCollisionPillar2.getSize().x > 0 && nextX > this->curCollisionPillar2.getPosition().x - this->heroSize.width)
 		{
-			nextX = this->curCollisionPillar.getPosition().x - this->heroSize.width;
+			nextX = this->curCollisionPillar2.getPosition().x - this->heroSize.width;
 		}
 	}
 	else
@@ -549,14 +550,6 @@ void PlayLevelScene::runJump(float interval)
             this->hero->setPositionY(this->curPoint.y);
         }
         
-        if (this->frontPillar.getNode() != nullptr) {
-            int actionTag = this->frontPillar.getActionTag();
-            bool bPlayAction  = this->bPlayingAction(actionTag);
-            if (bPlayAction) {
-                this->standActionPillar = true;
-            }
-        }
-        
         if (-(this->curPoint.x - 60) > this->conMaxX) {
             this->pillarContainer->setPositionX(-(this->curPoint.x-60));
             this->hero->getParent()->setPositionX(-(this->curPoint.x-60));
@@ -568,8 +561,6 @@ void PlayLevelScene::runJump(float interval)
         }
     }
     
-    
-
 }
 
 bool PlayLevelScene::checkCollision(float nextX, float nextY)
@@ -579,8 +570,9 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         vPillar = this->vMap.at(this->vMap.size()-1).vPillar;
     }
     
-    if (this->previous <= 0) {
-        this->previous = nextY;
+    if (this->previousY <= 0) {
+		this->previousY = nextY;
+		this->previousX = nextX + (this->heroSize.width * hero->getScaleX());
     }
     
     Vec2* vPoints = this->findPoint(this->heroSize,nextX,nextY,this->hero->getScaleX(),this->hero->getScaleY());
@@ -594,8 +586,8 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         float height =pInfo.getNode()->getPositionY()+ pInfo.getSize().y;
         
         float width = pInfo.getSize().x;
-        float pillarPSX = pInfo.getPosition().x;
-        if (nextX > pillarPSX + width or nextX + this->heroSize.width  < pillarPSX) {
+		float pillarPSX = pInfo.getNode()->getPositionX();
+        if (nextX > pillarPSX + width || nextX + this->heroSize.width  < pillarPSX) {
             continue;
         }
         
@@ -622,11 +614,6 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
             tempSize.width = pInfo.getSize().x;
             tempSize.height = pInfo.getSize().y;
             cocos2d::Vec2 tempP = pInfo.getNode()->getPosition();
-            if (this->pillarName == "" && bCollision) {
-                this->pillarName  = pInfo.getNode()->getName();
-                this->previousF = tempP.y;
-            }
-           
             
             float scaleXX = pInfo.getNode()->getScaleX();
             float scaleYY = pInfo.getNode()->getScaleY();
@@ -838,53 +825,44 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         
         if (sign1 && sign2 && sign3 && sign4 && sign5 && sign6 && sign7 && sign8) {
             
-            bool actionDirUp = false;
-            if (bPlayAction) {
-                if (this->previousF < pInfo.getNode()->getPositionY() && this->pillarName == pInfo.getNode()->getName()) {
-                    actionDirUp = true;
-                }
-            }
-            
-            if (this->previous >= height && bCollision == true  && bPlayAction == false) {
+			if (this->previousX >  pillarPSX && bCollision == true && bPlayAction == false) {
                 this->bCollisionPillar = false;
                 this->curCollisionPillar = pInfo;
                 delete []vPoints;
                 delete []vPrependicular;
-                
+				this->previousY = nextY;
+				this->previousX = nextX + (this->heroSize.width * hero->getScaleX());
+				this->standActionPillar = false;
                 return true;
             }
-            else if(bPlayAction && bCollision == true )
-            {
-                if ( (actionDirUp == false && this->previous >= height && bCollision == true ) || (actionDirUp == true && this->previous < height)) {
-                    this->bCollisionPillar = false;
-                    this->curCollisionPillar = pInfo;
-                    delete []vPoints;
-                    delete []vPrependicular;
-                    this->standActionPillar = true;
-                    return true;
-
-                }
-            }
+			else if (bPlayAction && bCollision == true && this->previousX > pillarPSX)
+			{
+					this->bCollisionPillar = false;
+					this->curCollisionPillar = pInfo;
+					delete[]vPoints;
+					delete[]vPrependicular;
+					this->standActionPillar = true;
+					this->previousY = nextY;
+					this->previousX = nextX + (this->heroSize.width * hero->getScaleX());
+					return true;
+			}
             else
             {
-                if (nextY < height || bCollision == false) {
-                    this->curCollisionPillar = pInfo;
+                if (nextY < height || bCollision == true) {
+					this->curCollisionPillar2 = pInfo;
                     this->bCollisionPillar = true;
                 }
                 delete []vPoints;
                 delete []vPrependicular;
+				this->previousY = nextY;
+				this->previousX = nextX + (this->heroSize.width * hero->getScaleX());
                 return false;
             }
         }
-        
-        if (this->pillarName == pInfo.getNode()->getName() && bCollision) {
-            this->pillarName  = pInfo.getNode()->getName();
-            this->previousF = pInfo.getNode()->getPositionY();
-        }
-
     }
     
-    this->previous  = nextY;
+    this->previousY  = nextY;
+	this->previousX = nextX + (this->heroSize.width * hero->getScaleX());
     delete []vPoints;
     delete []vPrependicular;
     this->bCollisionPillar = false;

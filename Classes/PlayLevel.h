@@ -87,6 +87,8 @@ private:
 	Layout* pillarContainer;
 
 	PillarInfo curCollisionPillar;
+
+	PillarInfo curCollisionPillar2;
     
     PillarInfo frontPillar;
 	
@@ -109,10 +111,10 @@ private:
     static int curSection ;
     static int curLevel ;
     
-    float previous;
+    float previousY;
+	float previousX;
     
     std::string pillarName;
-    float previousF;
     
     bool standActionPillar;
 	
