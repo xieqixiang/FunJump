@@ -117,6 +117,9 @@ private:
     float previousY;
 	float previousX;
     
+    float psxxx;
+    float pssxDis;
+    
     std::string pillarName;
     
     bool standActionPillar;

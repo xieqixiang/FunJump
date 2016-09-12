@@ -7,7 +7,7 @@
           <PointFrame FrameIndex="0" X="493.3766" Y="0.0000">
             <EasingData Type="0" />
           </PointFrame>
-          <PointFrame FrameIndex="60" X="493.3765" Y="260.0002">
+          <PointFrame FrameIndex="60" X="493.3765" Y="200.0000">
             <EasingData Type="0" />
           </PointFrame>
           <PointFrame FrameIndex="120" X="493.3765" Y="0.0000">
@@ -26,6 +26,39 @@
           </ScaleFrame>
         </Timeline>
         <Timeline ActionTag="-1589109732" Property="RotationSkew">
+          <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="60" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="120" X="0.0000" Y="0.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+        <Timeline ActionTag="691915292" Property="Position">
+          <PointFrame FrameIndex="0" X="595.2000" Y="0.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="60" X="757.2065" Y="0.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+          <PointFrame FrameIndex="120" X="595.2000" Y="0.0000">
+            <EasingData Type="0" />
+          </PointFrame>
+        </Timeline>
+        <Timeline ActionTag="691915292" Property="Scale">
+          <ScaleFrame FrameIndex="0" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="60" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+          <ScaleFrame FrameIndex="120" X="1.0000" Y="1.0000">
+            <EasingData Type="0" />
+          </ScaleFrame>
+        </Timeline>
+        <Timeline ActionTag="691915292" Property="RotationSkew">
           <ScaleFrame FrameIndex="0" X="0.0000" Y="0.0000">
             <EasingData Type="0" />
           </ScaleFrame>
@@ -202,52 +235,39 @@
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.2250" ScaleY="-0.9744" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="dead5_mainScene" ActionTag="-1589109732" Tag="31" IconVisible="False" LeftMargin="493.3766" RightMargin="1396.8259" TopMargin="821.1399" ClipAble="False" ComboBoxIndex="2" ColorAngle="260.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                  <AbstractNodeData Name="dead5_mainScene" ActionTag="-1589109732" Tag="31" IconVisible="False" LeftMargin="493.3765" RightMargin="1396.8259" TopMargin="621.1399" BottomMargin="200.0000" ClipAble="False" ComboBoxIndex="2" ColorAngle="260.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="45.6172" Y="138.8601" />
                     <AnchorPoint />
-                    <Position X="493.3766" />
+                    <Position X="493.3765" Y="200.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2549" />
+                    <PrePosition X="0.2549" Y="0.2083" />
                     <PreSize X="0.0236" Y="0.1446" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.1736" ScaleY="-0.9848" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs6_mainScene" ActionTag="-1019486362" Tag="21" IconVisible="False" LeftMargin="601.8314" RightMargin="1287.0852" TopMargin="764.8838" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
-                    <Size X="46.9031" Y="195.1162" />
+                  <AbstractNodeData Name="stairs7_mainScene" ActionTag="691915292" Tag="22" IconVisible="False" LeftMargin="757.2065" RightMargin="1093.6132" TopMargin="770.4058" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="85.0000" Y="189.5942" />
                     <AnchorPoint />
-                    <Position X="601.8314" />
+                    <Position X="757.2065" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.3109" />
-                    <PreSize X="0.0242" Y="0.2032" />
+                    <PrePosition X="0.3912" />
+                    <PreSize X="0.0439" Y="0.1975" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.3420" ScaleY="-0.9397" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs7_mainScene" ActionTag="691915292" Tag="22" IconVisible="False" LeftMargin="738.9459" RightMargin="1141.7327" TopMargin="769.2927" BottomMargin="1.1131" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
-                    <Size X="55.1411" Y="189.5942" />
-                    <AnchorPoint />
-                    <Position X="738.9459" Y="1.1131" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.3817" Y="0.0012" />
-                    <PreSize X="0.0285" Y="0.1975" />
-                    <SingleColor A="255" R="255" G="165" B="0" />
-                    <FirstColor A="255" R="0" G="128" B="0" />
-                    <EndColor A="255" R="255" G="255" B="0" />
-                    <ColorVector ScaleX="-0.3420" ScaleY="-0.9397" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="stairs8_mainScene" ActionTag="839566840" Tag="23" IconVisible="False" LeftMargin="872.2343" RightMargin="979.1754" TopMargin="737.0446" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                  <AbstractNodeData Name="stairs8_mainScene" ActionTag="839566840" Tag="23" IconVisible="False" LeftMargin="872.2343" RightMargin="979.1754" TopMargin="504.9316" BottomMargin="232.1130" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="84.4100" Y="222.9554" />
                     <AnchorPoint />
-                    <Position X="872.2343" />
+                    <Position X="872.2343" Y="232.1130" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4506" />
+                    <PrePosition X="0.4506" Y="0.2418" />
                     <PreSize X="0.0436" Y="0.2322" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
@@ -4682,7 +4702,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleX="0.2588" ScaleY="-0.9659" />
               </AbstractNodeData>
-              <AbstractNodeData Name="layoutBottom_mainscene" Visible="False" ActionTag="-920495214" Tag="3" IconVisible="False" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentWidthEnabled="True" LeftMargin="-2.1663" RightMargin="2.1663" TopMargin="-0.7703" BottomMargin="827.5485" TouchEnable="True" ClipAble="False" ComboBoxIndex="2" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="layoutBottom_mainscene" Visible="False" ActionTag="-920495214" Tag="3" IconVisible="False" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentWidthEnabled="True" LeftMargin="-2.1663" RightMargin="2.1663" TopMargin="-0.7680" BottomMargin="827.5462" TouchEnable="True" ClipAble="False" ComboBoxIndex="2" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="133.2218" />
                 <Children>
                   <AbstractNodeData Name="Text_1" ActionTag="1978269835" Tag="4" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="11.6480" RightMargin="550.3520" TopMargin="12.9429" BottomMargin="89.2789" FontSize="26" LabelText="力度：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
@@ -4831,7 +4851,7 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleY="1.0000" />
-                <Position X="-2.1663" Y="960.7703" />
+                <Position X="-2.1663" Y="960.7680" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="-0.0034" Y="1.0008" />

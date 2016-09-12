@@ -24,6 +24,8 @@ PlayLevelScene::PlayLevelScene() :bTouch(false),skeletonNode(nullptr), bJump(fal
     
     this->previousY = 0;
 	this->previousX = 0;
+    this->psxxx = 0.0;
+    this->pssxDis = 0.0;
     this->standActionPillar = false;
 }
 
@@ -360,9 +362,15 @@ void PlayLevelScene::update(float dt)
 	if (this->standActionPillar == true && this->bJump == false) {
         Node* node = this->curCollisionPillar.getNode();
         float psy = node->getPositionY();
+        float psx = node->getPositionX();
+        float dis = psx-this->psxxx;
+        
         float nodeHeight = node->getContentSize().height;
         
         this->hero->setPositionY(psy+nodeHeight);
+        float nextPSX =this->hero->getPositionX()+dis+this->pssxDis;
+        this->hero->setPositionX(nextPSX);
+        this->psxxx = nextPSX;
     }
     
 	if (this->bJump)
@@ -483,6 +491,7 @@ void PlayLevelScene::handleTouchEvent(cocos2d::Ref* ref, Widget::TouchEventType 
         this->touchCount = this->touchCount + 1;
         this->loadbar->setPercent(0);
         this->pillarName = "";
+        this->pssxDis = 0.0;
 	}
 }
 
@@ -530,6 +539,8 @@ void PlayLevelScene::runJump(float interval)
             float psy = this->curCollisionPillar.getNode()->getPositionY();
             this->hero->setPosition(Vec2(nextX,size.y+psy));
             this->curPoint.x = nextX;
+            this->psxxx = nextX;
+            this->pssxDis = this->psxxx - this->curCollisionPillar.getNode()->getPositionX();
             this->frontPillar = this->curCollisionPillar;
         }
         
@@ -838,7 +849,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         
         if (sign1 && sign2 && sign3 && sign4 && sign5 && sign6 && sign7 && sign8) {
             
-			if (this->previousX >  pillarPSX && bCollision == true && bPlayAction == false) {
+			if (this->previousX >  pillarPSX && this->previousX - this->heroSize.width <= pillarPSX +width && bCollision == true && bPlayAction == false) {
                 this->bCollisionPillar = false;
                 this->curCollisionPillar = pInfo;
                 delete []vPoints;
@@ -848,7 +859,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
 				this->standActionPillar = false;
                 return true;
             }
-			else if (bPlayAction && bCollision == true && this->previousX > pillarPSX)
+			else if (bPlayAction && bCollision == true && this->previousX > pillarPSX && this->previousX - this->heroSize.width <= pillarPSX+width)
 			{
 					this->bCollisionPillar = false;
 					this->curCollisionPillar = pInfo;
