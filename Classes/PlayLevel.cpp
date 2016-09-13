@@ -866,7 +866,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
 				previousYY = pInfo.getNode()->getPositionY() + pInfo.getSize().y;
 			}
             
-			if (this->previousX >  pillarPSX  && (this->previousY >= previousYY || this->previousY > height ) && this->previousX - this->heroSize.width <= pillarPSX + width && bCollision == true && bPlayAction == false) {
+			if (this->previousX >  pillarPSX  && (this->previousY >= previousYY || this->previousY >= height ) && this->previousX - this->heroSize.width <= pillarPSX + width && bCollision == true && bPlayAction == false) {
                 this->bCollisionPillar = false;
                 this->curCollisionPillar = pInfo;
                 delete []vPoints;
@@ -876,7 +876,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
 				this->standActionPillar = false;
                 return true;
             }
-			else if (bPlayAction && bCollision == true && (this->previousY >= previousYY || this->previousY > height) && this->previousX > pillarPSX && this->previousX - this->heroSize.width <= pillarPSX + width)
+			else if (bPlayAction && bCollision == true && (this->previousY >= previousYY || this->previousY >= height) && this->previousX > pillarPSX && this->previousX - this->heroSize.width <= pillarPSX + width)
 			{
 					this->bCollisionPillar = false;
 					this->curCollisionPillar = pInfo;

@@ -40,7 +40,7 @@
           <PointFrame FrameIndex="0" X="595.2000" Y="0.0000">
             <EasingData Type="0" />
           </PointFrame>
-          <PointFrame FrameIndex="60" X="757.2065" Y="0.0000">
+          <PointFrame FrameIndex="60" X="757.2068" Y="149.9995">
             <EasingData Type="0" />
           </PointFrame>
           <PointFrame FrameIndex="120" X="595.2000" Y="0.0000">
@@ -235,39 +235,39 @@
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.2250" ScaleY="-0.9744" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="dead5_mainScene" ActionTag="-1589109732" Tag="31" IconVisible="False" LeftMargin="493.3765" RightMargin="1396.8259" TopMargin="621.1399" BottomMargin="200.0000" ClipAble="False" ComboBoxIndex="2" ColorAngle="260.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                  <AbstractNodeData Name="dead5_mainScene" ActionTag="-1589109732" Tag="31" IconVisible="False" LeftMargin="493.3766" RightMargin="1396.8259" TopMargin="821.1399" ClipAble="False" ComboBoxIndex="2" ColorAngle="260.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="45.6172" Y="138.8601" />
                     <AnchorPoint />
-                    <Position X="493.3765" Y="200.0000" />
+                    <Position X="493.3766" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2549" Y="0.2083" />
+                    <PrePosition X="0.2549" />
                     <PreSize X="0.0236" Y="0.1446" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.1736" ScaleY="-0.9848" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs7_mainScene" ActionTag="691915292" Tag="22" IconVisible="False" LeftMargin="757.2065" RightMargin="1093.6132" TopMargin="770.4058" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                  <AbstractNodeData Name="stairs7_mainScene" ActionTag="691915292" Tag="22" IconVisible="False" LeftMargin="595.2000" RightMargin="1255.6196" TopMargin="770.4058" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="85.0000" Y="189.5942" />
                     <AnchorPoint />
-                    <Position X="757.2065" />
+                    <Position X="595.2000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.3912" />
+                    <PrePosition X="0.3075" />
                     <PreSize X="0.0439" Y="0.1975" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
                     <EndColor A="255" R="255" G="255" B="0" />
                     <ColorVector ScaleX="-0.3420" ScaleY="-0.9397" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="stairs8_mainScene" ActionTag="839566840" Tag="23" IconVisible="False" LeftMargin="872.2343" RightMargin="979.1754" TopMargin="504.9316" BottomMargin="232.1130" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                  <AbstractNodeData Name="stairs8_mainScene" ActionTag="839566840" Tag="23" IconVisible="False" LeftMargin="872.2343" RightMargin="979.1754" TopMargin="737.0446" ClipAble="False" ComboBoxIndex="2" ColorAngle="250.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="84.4100" Y="222.9554" />
                     <AnchorPoint />
-                    <Position X="872.2343" Y="232.1130" />
+                    <Position X="872.2343" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4506" Y="0.2418" />
+                    <PrePosition X="0.4506" />
                     <PreSize X="0.0436" Y="0.2322" />
                     <SingleColor A="255" R="255" G="165" B="0" />
                     <FirstColor A="255" R="0" G="128" B="0" />
@@ -4705,14 +4705,14 @@
               <AbstractNodeData Name="layoutBottom_mainscene" Visible="False" ActionTag="-920495214" Tag="3" IconVisible="False" PositionPercentYEnabled="True" PercentWidthEnable="True" PercentWidthEnabled="True" LeftMargin="-2.1663" RightMargin="2.1663" TopMargin="-0.7680" BottomMargin="827.5462" TouchEnable="True" ClipAble="False" ComboBoxIndex="2" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="640.0000" Y="133.2218" />
                 <Children>
-                  <AbstractNodeData Name="Text_1" ActionTag="1978269835" Tag="4" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="11.6480" RightMargin="550.3520" TopMargin="12.9429" BottomMargin="89.2789" FontSize="26" LabelText="力度：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="78.0000" Y="31.0000" />
+                  <AbstractNodeData Name="Text_1" ActionTag="1978269835" Tag="4" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="11.6480" RightMargin="550.3520" TopMargin="15.4429" BottomMargin="91.7789" FontSize="26" LabelText="力度：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="78.0000" Y="26.0000" />
                     <AnchorPoint ScaleY="0.5000" />
                     <Position X="11.6480" Y="104.7789" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="0" G="0" B="0" />
                     <PrePosition X="0.0182" Y="0.7865" />
-                    <PreSize X="0.1219" Y="0.2327" />
+                    <PreSize X="0.1219" Y="0.1952" />
                     <FontResource Type="Default" Path="" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
@@ -4752,25 +4752,25 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txtAcceleration_mainScene" ActionTag="1695956706" Tag="18" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="313.9006" RightMargin="285.0994" TopMargin="15.5851" BottomMargin="89.6367" FontSize="24" LabelText="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="41.0000" Y="28.0000" />
+                  <AbstractNodeData Name="txtAcceleration_mainScene" ActionTag="1695956706" Tag="18" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="316.1976" RightMargin="287.8024" TopMargin="17.8863" BottomMargin="91.3355" FontSize="24" LabelText="104" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="36.0000" Y="24.0000" />
                     <AnchorPoint ScaleX="0.4594" ScaleY="0.4247" />
                     <Position X="332.7360" Y="101.5283" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="0" G="0" B="0" />
                     <PrePosition X="0.5199" Y="0.7621" />
-                    <PreSize X="0.0641" Y="0.2102" />
+                    <PreSize X="0.0562" Y="0.1802" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txtUpValue_mainScene" ActionTag="-505183138" Tag="19" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="435.6068" RightMargin="163.3932" TopMargin="14.2586" BottomMargin="90.9632" FontSize="24" LabelText="700" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="41.0000" Y="28.0000" />
+                  <AbstractNodeData Name="txtUpValue_mainScene" ActionTag="-505183138" Tag="19" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="437.8128" RightMargin="166.1872" TopMargin="16.9910" BottomMargin="92.2308" FontSize="24" LabelText="700" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="36.0000" Y="24.0000" />
                     <AnchorPoint ScaleX="0.4412" ScaleY="0.3169" />
                     <Position X="453.6960" Y="99.8364" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="0" G="0" B="0" />
                     <PrePosition X="0.7089" Y="0.7494" />
-                    <PreSize X="0.0641" Y="0.2102" />
+                    <PreSize X="0.0562" Y="0.1802" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
