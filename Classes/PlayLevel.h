@@ -108,6 +108,7 @@ private:
 	std::vector<Node*> startS;
     
     std::vector<int> actionTags;
+	std::map<int, float> actionMaps;
     
     Vec2 curPoint;
     

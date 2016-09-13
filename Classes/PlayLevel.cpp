@@ -358,6 +358,7 @@ void PlayLevelScene::update(float dt)
 			this->loadbar->setPercent(percent - 1);
 		}
 	}
+	
     
 	if (this->standActionPillar == true && this->bJump == false) {
         Node* node = this->curCollisionPillar.getNode();
@@ -491,6 +492,7 @@ void PlayLevelScene::handleTouchEvent(cocos2d::Ref* ref, Widget::TouchEventType 
         this->touchCount = this->touchCount + 1;
         this->loadbar->setPercent(0);
         this->pillarName = "";
+		this->actionMaps.clear();
       
 	}
 }
@@ -583,7 +585,6 @@ void PlayLevelScene::runJump(float interval)
             this->hero->getParent()->setPositionX(this->conMaxX);
         }
     }
-    
 }
 
 bool PlayLevelScene::checkCollision(float nextX, float nextY)
@@ -606,7 +607,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
     int size = vPillar.size();
     for (int i = 0 ; i < size ; i++) {
         PillarInfo pInfo = vPillar.at(i);
-        
+	
         float height =pInfo.getNode()->getPositionY()+ pInfo.getSize().y;
         
         float width = pInfo.getSize().x;
@@ -848,8 +849,24 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
         }
         
         if (sign1 && sign2 && sign3 && sign4 && sign5 && sign6 && sign7 && sign8) {
+
+			float previousYY = 0.0;
+			for (std::map<int, float>::iterator it = this->actionMaps.begin(); it != this->actionMaps.end();it++)
+			{
+				int tagg = (*it).first;
+				if (tagg == pInfo.getNode()->getTag())
+				{
+					previousYY = (*it).second;
+					break;
+				}
+			}
+
+			if (previousYY == 0.0)
+			{
+				previousYY = pInfo.getNode()->getPositionY() + pInfo.getSize().y;
+			}
             
-			if (this->previousX >  pillarPSX && this->previousX - this->heroSize.width <= pillarPSX + width && bCollision == true && bPlayAction == false) {
+			if (this->previousX >  pillarPSX  && (this->previousY >= previousYY || this->previousY > height ) && this->previousX - this->heroSize.width <= pillarPSX + width && bCollision == true && bPlayAction == false) {
                 this->bCollisionPillar = false;
                 this->curCollisionPillar = pInfo;
                 delete []vPoints;
@@ -859,7 +876,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
 				this->standActionPillar = false;
                 return true;
             }
-			else if (bPlayAction && bCollision == true && this->previousX > pillarPSX && this->previousX - this->heroSize.width <= pillarPSX + width)
+			else if (bPlayAction && bCollision == true && (this->previousY >= previousYY || this->previousY > height) && this->previousX > pillarPSX && this->previousX - this->heroSize.width <= pillarPSX + width)
 			{
 					this->bCollisionPillar = false;
 					this->curCollisionPillar = pInfo;
@@ -883,6 +900,7 @@ bool PlayLevelScene::checkCollision(float nextX, float nextY)
                 return false;
             }
         }
+		this->actionMaps.insert(std::pair<int, float>(pInfo.getNode()->getTag(), pInfo.getNode()->getPositionY() + pInfo.getSize().y));
     }
     
     this->previousY  = nextY;
